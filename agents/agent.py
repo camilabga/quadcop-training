@@ -1,5 +1,9 @@
 from keras import layers, models, optimizers
 from keras import backend as K
+import random
+from collections import namedtuple, deque
+import numpy as np
+import copy
 
 class Actor:
     """Actor (Policy) Model."""
@@ -119,9 +123,6 @@ class Critic:
             inputs=[*self.model.input, K.learning_phase()],
             outputs=action_gradients)
 
-import random
-from collections import namedtuple, deque
-
 class ReplayBuffer:
     """Fixed-size buffer to store experience tuples."""
 
@@ -149,8 +150,6 @@ class ReplayBuffer:
         """Return the current size of internal memory."""
         return len(self.memory)
 
-import numpy as np
-import copy
 
 class OUNoise:
     """Ornstein-Uhlenbeck process."""
